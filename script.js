@@ -1,20 +1,15 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-analytics.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
-  <script type="module">
-  const firebaseConfig = {
-    apiKey: "AIzaSyAX-2K2t-_FNrPZytUAV7vpaqWxB5v_3rw",
-    authDomain: "login-796fa.firebaseapp.com",
-    databaseURL: "https://login-796fa-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "login-796fa",
-    storageBucket: "login-796fa.appspot.com",
-    messagingSenderId: "1090389157181",
-    appId: "1:1090389157181:web:c8fe720417a9f556d41154",
-    measurementId: "G-2E5LXPHR89"
-  };
-</script>
+  apiKey: "AIzaSyAX-2K2t-_FNrPZytUAV7vpaqWxB5v_3rw",
+  authDomain: "login-796fa.firebaseapp.com",
+  projectId: "login-796fa",
+  storageBucket: "login-796fa.appspot.com",
+  messagingSenderId: "1090389157181",
+  appId: "1:1090389157181:web:c8fe720417a9f556d41154",
+  measurementId: "G-2E5LXPHR89"
 };
 
 const app = initializeApp(firebaseConfig);
