@@ -58,25 +58,23 @@ createacctbtn.addEventListener("click", function() {
   if(isVerified) {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
       .then((userCredential) => {
-      // Signed in 
-      const user = userCredential.user;
-      // ...
-      window.alert("Success! Account created.");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-      window.alert("Error occurred. Try again.");
-    });
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        window.alert("Success! Account created.");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        window.alert("Error occurred. Try again.");
+      });
   }
 });
 
 submitButton.addEventListener("click", function() {
   email = emailInput.value;
-  console.log(email);
   password = passwordInput.value;
-  console.log(password);
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -84,7 +82,17 @@ submitButton.addEventListener("click", function() {
       const user = userCredential.user;
       console.log("Success! Welcome back!");
       window.alert("Success! Welcome back!");
-      // ...
+
+      // Open a new window with a different domain
+      const newWindow = window.open("https://www.example.com", "_blank");
+
+      // You can't close the current window directly unless it was opened by a script.
+      // The following line might not work depending on browser security settings.
+      // window.close(); 
+
+      // Optionally, redirect the current window to another page
+      // window.location.href = "https://www.example.com";
+
     })
     .catch((error) => {
       const errorCode = error.code;
