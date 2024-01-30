@@ -21,7 +21,7 @@ const signupButton = document.getElementById("sign-up");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
-const createacct = document.getElementById("create-acct")
+const createacct = document.getElementById("create-acct");
 
 const signupEmailIn = document.getElementById("email-signup");
 const confirmSignupEmailIn = document.getElementById("confirm-email-signup");
@@ -33,84 +33,59 @@ const returnBtn = document.getElementById("return-btn");
 
 var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword;
 
-// ...
-
-createacctbtn.addEventListener("click", function () {
+createacctbtn.addEventListener("click", function() {
   var isVerified = true;
 
   signupEmail = signupEmailIn.value;
   confirmSignupEmail = confirmSignupEmailIn.value;
-  if (signupEmail != confirmSignupEmail) {
+  if(signupEmail != confirmSignupEmail) {
     window.alert("Email fields do not match. Try again.");
     isVerified = false;
   }
 
   signupPassword = signupPasswordIn.value;
   confirmSignUpPassword = confirmSignUpPasswordIn.value;
-
-  // Check if the password meets the minimum character requirement
-  const minPasswordLength = 8; // Adjust as needed
-  if (signupPassword.length < minPasswordLength) {
-    window.alert(`Password must be at least ${minPasswordLength} characters long.`);
-    isVerified = false;
-  }
-
-  if (signupPassword != confirmSignUpPassword) {
+  if(signupPassword != confirmSignUpPassword) {
     window.alert("Password fields do not match. Try again.");
     isVerified = false;
   }
-
-  if (signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
+  
+  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
-
-  if (isVerified) {
+  
+  if(isVerified) {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
       .then((userCredential) => {
+        // Signed in 
         const user = userCredential.user;
+        // ...
         window.alert("Success! Account created.");
-
-        // Clear the input fields after successful account creation
-        signupEmailIn.value = "";
-        confirmSignupEmailIn.value = "";
-        signupPasswordIn.value = "";
-        confirmSignUpPasswordIn.value = "";
       })
       .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
         window.alert("Error occurred. Try again.");
       });
   }
 });
 
-// ...
-
-
 submitButton.addEventListener("click", function() {
   email = emailInput.value;
+  console.log(email);
   password = passwordInput.value;
+  console.log(password);
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log("Success! Welcome back!");
-      window.alert("Success! Welcome back!");
-    
-      // Clear the input fields after successful login
-      emailInput.value = "";
-      passwordInput.value = "";        
-
-      // Open a new window with a different domain
-      const newWindow = window.open("https://www.example.com", "_blank");
-
-      // You can't close the current window directly unless it was opened by a script.
-      // The following line might not work depending on browser security settings.
-      // window.close(); 
-
-      // Optionally, redirect the current window to another page
-      // window.location.href = "https://www.example.com";
-
+      
+      // Redirect to your desired site
+      window.location.href = "https://example.com";
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -121,13 +96,11 @@ submitButton.addEventListener("click", function() {
 });
 
 signupButton.addEventListener("click", function() {
-    main.style.display = "none";
-    createacct.style.display = "block";
+  main.style.display = "none";
+  createacct.style.display = "block";
 });
 
 returnBtn.addEventListener("click", function() {
-    main.style.display = "block";
-    createacct.style.display = "none";
+  main.style.display = "block";
+  createacct.style.display = "none";
 });
-
-// <h2>Hello World</h2>
