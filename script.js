@@ -21,7 +21,7 @@ const signupButton = document.getElementById("sign-up");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
-const createacct = document.getElementById("create-acct")
+const createacct = document.getElementById("create-acct");
 
 const signupEmailIn = document.getElementById("email-signup");
 const confirmSignupEmailIn = document.getElementById("confirm-email-signup");
@@ -39,15 +39,15 @@ createacctbtn.addEventListener("click", function() {
   signupEmail = signupEmailIn.value;
   confirmSignupEmail = confirmSignupEmailIn.value;
   if(signupEmail != confirmSignupEmail) {
-      window.alert("Email fields do not match. Try again.")
-      isVerified = false;
+    window.alert("Email fields do not match. Try again.");
+    isVerified = false;
   }
 
   signupPassword = signupPasswordIn.value;
   confirmSignUpPassword = confirmSignUpPasswordIn.value;
   if(signupPassword != confirmSignUpPassword) {
-      window.alert("Password fields do not match. Try again.")
-      isVerified = false;
+    window.alert("Password fields do not match. Try again.");
+    isVerified = false;
   }
   
   if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
@@ -74,25 +74,18 @@ createacctbtn.addEventListener("click", function() {
 
 submitButton.addEventListener("click", function() {
   email = emailInput.value;
+  console.log(email);
   password = passwordInput.value;
+  console.log(password);
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log("Success! Welcome back!");
-      window.alert("Success! Welcome back!");
-
-      // Open a new window with a different domain
-      const newWindow = window.open("https://www.example.com", "_blank");
-
-      // You can't close the current window directly unless it was opened by a script.
-      // The following line might not work depending on browser security settings.
-      // window.close(); 
-
-      // Optionally, redirect the current window to another page
-      // window.location.href = "https://www.example.com";
-
+      
+      // Redirect to your desired site
+      window.location.href = "https://example.com";
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -103,11 +96,11 @@ submitButton.addEventListener("click", function() {
 });
 
 signupButton.addEventListener("click", function() {
-    main.style.display = "none";
-    createacct.style.display = "block";
+  main.style.display = "none";
+  createacct.style.display = "block";
 });
 
 returnBtn.addEventListener("click", function() {
-    main.style.display = "block";
-    createacct.style.display = "none";
+  main.style.display = "block";
+  createacct.style.display = "none";
 });
