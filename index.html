@@ -9,6 +9,19 @@
 
     <h1>Firebase Login Example</h1>
 
+    <!-- Registration Form -->
+    <form id="registrationForm">
+        <label for="registerEmail">Email:</label>
+        <input type="email" id="registerEmail" required><br>
+
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" required><br>
+
+        <button type="button" onclick="register()">Register</button>
+    </form>
+
+    <hr>
+
     <!-- Login Form -->
     <form id="loginForm">
         <label for="email">Email:</label>
@@ -32,8 +45,7 @@
 
     <script>
         // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBCJP19d6zxxtfhfykTzShMKKv_3rZvhD4",
+        apiKey: "AIzaSyBCJP19d6zxxtfhfykTzShMKKv_3rZvhD4",
       authDomain: "teknik-ab-login.firebaseapp.com",
       databaseURL: "https://teknik-ab-login-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "teknik-ab-login",
@@ -49,6 +61,23 @@
         // Firebase Auth instance
         const auth = firebase.auth();
 
+        // Function to register a new user
+        function register() {
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // User registered successfully
+                    const user = userCredential.user;
+                    alert('Account created successfully. You can now log in.');
+                })
+                .catch((error) => {
+                    // Handle registration errors
+                    alert(error.message);
+                });
+        }
+
         // Function to log in a user
         function login() {
             const email = document.getElementById('email').value;
@@ -61,6 +90,7 @@
                     document.getElementById('userInfo').style.display = 'block';
                     document.getElementById('userName').innerText = user.email;
                     document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('registrationForm').style.display = 'none';
                 })
                 .catch((error) => {
                     // Handle login errors
@@ -75,6 +105,7 @@
                     // Logged out successfully
                     document.getElementById('userInfo').style.display = 'none';
                     document.getElementById('loginForm').style.display = 'block';
+                    document.getElementById('registrationForm').style.display = 'block';
                 })
                 .catch((error) => {
                     // Handle logout errors
@@ -89,10 +120,12 @@
                 document.getElementById('userInfo').style.display = 'block';
                 document.getElementById('userName').innerText = user.email;
                 document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registrationForm').style.display = 'none';
             } else {
                 // User is logged out
                 document.getElementById('userInfo').style.display = 'none';
                 document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('registrationForm').style.display = 'block';
             }
         });
     </script>
