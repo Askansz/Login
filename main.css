@@ -11,10 +11,10 @@ body {
   background-color: #0583D2;
 }
 
-h1 {
+h2 {
   margin-bottom: 8%;
   text-align: center;
-  font-family: "Fredoka One", cursive;
+  font-family: "", ;
   color: #0583D2;
   letter-spacing: 0.1em;
 }
@@ -56,6 +56,8 @@ input, button {
   /* vertical align */
   height: 70vh;
   margin-top: 15vh;
+  /* Rounded corners */
+  border-radius: 15px;
 }
 
 #submit, #create-acct-btn {
