@@ -38,19 +38,19 @@ createacctbtn.addEventListener("click", function() {
 
   signupEmail = signupEmailIn.value;
   confirmSignupEmail = confirmSignupEmailIn.value;
-  if(signupEmail != confirmSignupEmail) {
+  if(signupEmail !== confirmSignupEmail) {
     window.alert("Email fields do not match. Try again.");
     isVerified = false;
   }
 
   signupPassword = signupPasswordIn.value;
   confirmSignUpPassword = confirmSignUpPasswordIn.value;
-  if(signupPassword != confirmSignUpPassword) {
+  if(signupPassword !== confirmSignUpPassword) {
     window.alert("Password fields do not match. Try again.");
     isVerified = false;
   }
   
-  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
+  if(!signupEmail || !confirmSignupEmail || !signupPassword || !confirmSignUpPassword) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
@@ -66,8 +66,8 @@ createacctbtn.addEventListener("click", function() {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
-        window.alert("Error occurred. Try again.");
+        console.error(`Error code: ${errorCode}, Error message: ${errorMessage}`);
+        window.alert(`Error occurred: ${errorMessage}`);
       });
   }
 });
@@ -105,8 +105,8 @@ submitButton.addEventListener("click", function() {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("Error occurred. Try again.");
-      window.alert("Error occurred. Try again.");
+      console.error(`Error code: ${errorCode}, Error message: ${errorMessage}`);
+      window.alert(`Error occurred: ${errorMessage}`);
     });
 });
 
