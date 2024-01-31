@@ -85,22 +85,27 @@ submitButton.addEventListener("click", function() {
       console.log("Success! Welcome back!");
 
       // Create a new window with custom HTML content
-      const newWindow = window.open('', '_blank');
-      newWindow.document.write(`
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Custom Page</title>
-          </head>
-          <body>
-            <h1>Welcome, ${email}!</h1>
-            <p>This is a custom page for the logged-in user.</p>
-          </body>
-        </html>
-      `);
+      const newWindow = window.open('about:blank', '_blank');
+      if (newWindow) {
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <title>Custom Page</title>
+            </head>
+            <body>
+              <h1>Welcome, ${email}!</h1>
+              <p>This is a custom page for the logged-in user.</p>
+            </body>
+          </html>
+        `);
 
-      // Optional: Close the login page if needed
-      window.close();
+        // Optional: Close the login page if needed
+        window.close();
+      } else {
+        console.error("Failed to open a new window.");
+        window.alert("Error occurred. Try again.");
+      }
     })
     .catch((error) => {
       const errorCode = error.code;
