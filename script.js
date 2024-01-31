@@ -102,8 +102,13 @@ submitButton.addEventListener("click", function() {
       // Create a URL for the blob
       const blobURL = URL.createObjectURL(blob);
 
-      // Open the URL in a new window
-      const newWindow = window.open(blobURL, '_blank');
+      // Create a link element
+      const link = document.createElement("a");
+      link.href = blobURL;
+      link.target = "_blank";
+
+      // Simulate a click on the link to open it in a new tab
+      link.click();
 
       // Optional: Delay closing the login page for 2 seconds (adjust as needed)
       setTimeout(() => {
@@ -113,18 +118,4 @@ submitButton.addEventListener("click", function() {
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(`Error code: ${errorCode}, Error message: ${errorMessage}`);
-      window.alert(`Error occurred: ${errorMessage}`);
-    });
-});
-
-signupButton.addEventListener("click", function() {
-  main.style.display = "none";
-  createacct.style.display = "block";
-});
-
-returnBtn.addEventListener("click", function() {
-  main.style.display = "block";
-  createacct.style.display = "none";
-});
+      const errorMessage =
