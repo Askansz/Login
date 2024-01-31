@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAX-2K2t-_FNrPZytUAV7vpaqWxB5v_3rw",
   authDomain: "login-796fa.firebaseapp.com",
@@ -13,12 +12,10 @@ const firebaseConfig = {
   measurementId: "G-2E5LXPHR89"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// DOM elements
 const submitButton = document.getElementById("submit");
 const signupButton = document.getElementById("sign-up");
 const emailInput = document.getElementById("email");
@@ -41,19 +38,19 @@ createacctbtn.addEventListener("click", function() {
 
   signupEmail = signupEmailIn.value;
   confirmSignupEmail = confirmSignupEmailIn.value;
-  if(signupEmail !== confirmSignupEmail) {
+  if(signupEmail != confirmSignupEmail) {
     window.alert("Email fields do not match. Try again.");
     isVerified = false;
   }
 
   signupPassword = signupPasswordIn.value;
   confirmSignUpPassword = confirmSignUpPasswordIn.value;
-  if(signupPassword !== confirmSignUpPassword) {
+  if(signupPassword != confirmSignUpPassword) {
     window.alert("Password fields do not match. Try again.");
     isVerified = false;
   }
   
-  if(!signupEmail || !confirmSignupEmail || !signupPassword || !confirmSignUpPassword) {
+  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
@@ -77,19 +74,18 @@ createacctbtn.addEventListener("click", function() {
 
 submitButton.addEventListener("click", function() {
   email = emailInput.value;
+  console.log(email);
   password = passwordInput.value;
+  console.log(password);
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log("Success! Welcome back!");
-
-      // Open a new window with "about:blank"
-      var blankWindow = window.open("about:blank", "_blank");
       
-      // You can also close the current window if needed
-      // window.close();
+      // Redirect to your desired site
+      window.location.href = "https://example.com";
     })
     .catch((error) => {
       const errorCode = error.code;
