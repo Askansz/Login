@@ -103,10 +103,13 @@ submitButton.addEventListener("click", function() {
       const blobURL = URL.createObjectURL(blob);
 
       // Open the URL in a new window
-      window.open(blobURL, '_blank');
+      const newWindow = window.open(blobURL, '_blank');
 
-      // Optional: Close the login page if needed
-      window.close();
+      // Optional: Delay closing the login page for 2 seconds (adjust as needed)
+      setTimeout(() => {
+        // Close the login page
+        window.close();
+      }, 2000);
     })
     .catch((error) => {
       const errorCode = error.code;
