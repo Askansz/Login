@@ -84,28 +84,29 @@ submitButton.addEventListener("click", function() {
       const user = userCredential.user;
       console.log("Success! Welcome back!");
 
-      // Create a new window with custom HTML content
-      const newWindow = window.open('about:blank', '_blank');
-      if (newWindow) {
-        newWindow.document.write(`
-          <!DOCTYPE html>
-          <html>
-            <head>
-              <title>Custom Page</title>
-            </head>
-            <body>
-              <h1>Welcome, ${email}!</h1>
-              <p>This is a custom page for the logged-in user.</p>
-            </body>
-          </html>
-        `);
+      // Create a blob with custom HTML content
+      const customHTML = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Custom Page</title>
+          </head>
+          <body>
+            <h1>Welcome, ${email}!</h1>
+            <p>This is a custom page for the logged-in user.</p>
+          </body>
+        </html>
+      `;
+      const blob = new Blob([customHTML], { type: 'text/html' });
 
-        // Optional: Close the login page if needed
-        window.close();
-      } else {
-        console.error("Failed to open a new window.");
-        window.alert("Error occurred. Try again.");
-      }
+      // Create a URL for the blob
+      const blobURL = URL.createObjectURL(blob);
+
+      // Open the URL in a new window
+      window.open(blobURL, '_blank');
+
+      // Optional: Close the login page if needed
+      window.close();
     })
     .catch((error) => {
       const errorCode = error.code;
