@@ -84,8 +84,23 @@ submitButton.addEventListener("click", function() {
       const user = userCredential.user;
       console.log("Success! Welcome back!");
       
-      // Redirect to your desired site
-      window.location.href = "https://example.com";
+      // Redirect to about:blank with custom HTML
+      const newWindow = window.open('about:blank', '_blank');
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <title>Custom Page</title>
+          </head>
+          <body>
+            <h1>Welcome, ${email}!</h1>
+            <p>This is a custom page for the logged-in user.</p>
+          </body>
+        </html>
+      `);
+
+      // Optional: Close the login page if needed
+      window.close();
     })
     .catch((error) => {
       const errorCode = error.code;
