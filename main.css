@@ -9,7 +9,7 @@
 
 body {
   background-image: url('https://i.ibb.co/9hxnWzC/converted-1.jpg');
-  background-size: cover; /* You can adjust this based on your preference */
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -17,7 +17,7 @@ h1,
 h2 {
   margin-bottom: 8%;
   text-align: center;
-  font-family: 'Fredoka One', sans-serif; /* Added the font-family */
+  font-family: 'Fredoka One', sans-serif;
   color: #0583D2;
   letter-spacing: 0.1em;
 }
@@ -38,6 +38,7 @@ p span {
 
 input {
   margin-bottom: 3%;
+  border-radius: 5px; /* Rounded corners for input */
 }
 
 input:last-of-type {
@@ -48,6 +49,7 @@ input,
 button {
   padding: 3%;
   width: 100%;
+  border-radius: 5px; /* Rounded corners for buttons */
 }
 
 .login-container {
@@ -67,6 +69,7 @@ button {
   color: white;
   border: none;
   margin-top: 5%;
+  border-radius: 5px; /* Rounded corners for these specific buttons */
 }
 
 button:hover {
