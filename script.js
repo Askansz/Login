@@ -83,10 +83,9 @@ submitButton.addEventListener("click", function() {
       // Signed in
       const user = userCredential.user;
       console.log("Success! Welcome back!");
-      
-      // Redirect to about:blank with custom HTML
-      const newWindow = window.open('about:blank', '_blank');
-      newWindow.document.write(`
+
+      // Create a new HTML document with custom content
+      const customHTML = `
         <!DOCTYPE html>
         <html>
           <head>
@@ -97,7 +96,13 @@ submitButton.addEventListener("click", function() {
             <p>This is a custom page for the logged-in user.</p>
           </body>
         </html>
-      `);
+      `;
+
+      // Create an iframe and set the srcdoc attribute
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      iframe.srcdoc = customHTML;
 
       // Optional: Close the login page if needed
       window.close();
