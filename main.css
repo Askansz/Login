@@ -8,21 +8,16 @@
 }
 
 body {
-  background-color: ;
+  background-image: url('https://i.ibb.co/9hxnWzC/converted-1.jpg');
+  background-size: cover; /* You can adjust this based on your preference */
+  background-repeat: no-repeat;
 }
 
-h1 {
-  margin-bottom: 8%;
-  text-align: center;
-  font-family: "", ;
-  color: #0583D2;
-  letter-spacing: 0.1em;
-}
-
+h1,
 h2 {
   margin-bottom: 8%;
   text-align: center;
-  font-family: "", ;
+  font-family: 'Fredoka One', sans-serif; /* Added the font-family */
   color: #0583D2;
   letter-spacing: 0.1em;
 }
@@ -37,8 +32,8 @@ p {
 }
 
 p span {
-  background:#fff;
-  padding:0 10px;
+  background: #fff;
+  padding: 0 10px;
 }
 
 input {
@@ -49,7 +44,8 @@ input:last-of-type {
   margin-bottom: 0;
 }
 
-input, button {
+input,
+button {
   padding: 3%;
   width: 100%;
 }
@@ -57,18 +53,16 @@ input, button {
 .login-container {
   background-color: white;
   padding: 7%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  /* horizontal align */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 40vw;
   margin-left: 30vw;
-  /* vertical align */
   height: 70vh;
   margin-top: 15vh;
-  /* Rounded corners */
   border-radius: 15px;
 }
 
-#submit, #create-acct-btn {
+#submit,
+#create-acct-btn {
   background-color: #0583D2;
   color: white;
   border: none;
