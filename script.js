@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAX-2K2t-_FNrPZytUAV7vpaqWxB5v_3rw",
@@ -17,66 +17,14 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 const submitButton = document.getElementById("submit");
-const signupButton = document.getElementById("sign-up");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const main = document.getElementById("main");
-const createacct = document.getElementById("create-acct");
 
-const signupEmailIn = document.getElementById("email-signup");
-const confirmSignupEmailIn = document.getElementById("confirm-email-signup");
-const signupPasswordIn = document.getElementById("password-signup");
-const confirmSignUpPasswordIn = document.getElementById("confirm-password-signup");
-const createacctbtn = document.getElementById("create-acct-btn");
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
 
-const returnBtn = document.getElementById("return-btn");
-
-var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword;
-
-createacctbtn.addEventListener("click", function() {
-  var isVerified = true;
-
-  signupEmail = signupEmailIn.value;
-  confirmSignupEmail = confirmSignupEmailIn.value;
-  if(signupEmail !== confirmSignupEmail) {
-    window.alert("Email fields do not match. Try again.");
-    isVerified = false;
-  }
-
-  signupPassword = signupPasswordIn.value;
-  confirmSignUpPassword = confirmSignUpPasswordIn.value;
-  if(signupPassword !== confirmSignUpPassword) {
-    window.alert("Password fields do not match. Try again.");
-    isVerified = false;
-  }
-  
-  if(!signupEmail || !confirmSignupEmail || !signupPassword || !confirmSignUpPassword) {
-    window.alert("Please fill out all required fields.");
-    isVerified = false;
-  }
-  
-  if(isVerified) {
-    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-        window.alert("Success! Account created.");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(`Error code: ${errorCode}, Error message: ${errorMessage}`);
-        window.alert(`Error occurred: ${errorMessage}`);
-      });
-  }
-});
-
-submitButton.addEventListener("click", function() {
-  email = emailInput.value;
-  console.log(email);
-  password = passwordInput.value;
-  console.log(password);
+  const email = emailInput.value;
+  const password = passwordInput.value;
 
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -84,38 +32,13 @@ submitButton.addEventListener("click", function() {
       const user = userCredential.user;
       console.log("Success! Welcome back!");
 
-      // Create a blob with custom HTML content
-      const customHTML = `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <title>Custom Page</title>
-          </head>
-          <body>
-            <h1>Welcome, ${email}!</h1>
-            <p>This is a custom page for the logged-in user.</p>
-          </body>
-        </html>
-      `;
-      const blob = new Blob([customHTML], { type: 'text/html' });
-
-      // Create a URL for the blob
-      const blobURL = URL.createObjectURL(blob);
-
-      // Create a link element
-      const link = document.createElement("a");
-      link.href = blobURL;
-      link.target = "_blank";
-
-      // Simulate a click on the link to open it in a new tab
-      link.click();
-
-      // Optional: Delay closing the login page for 2 seconds (adjust as needed)
-      setTimeout(() => {
-        // Close the login page
-        window.close();
-      }, 2000);
+      // Open a new tab with a custom welcome message
+      window.open(`welcome.html?email=${email}`, '_blank');
     })
     .catch((error) => {
       const errorCode = error.code;
-      const errorMessage =
+      const errorMessage = error.message;
+      console.error(`Error code: ${errorCode}, Error message: ${errorMessage}`);
+      window.alert(`Error occurred: ${errorMessage}`);
+    });
+});
