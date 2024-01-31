@@ -84,7 +84,7 @@ submitButton.addEventListener("click", function() {
       const user = userCredential.user;
       console.log("Success! Welcome back!");
 
-      // Create a data URL with custom HTML content
+      // Create a blob with custom HTML content
       const customHTML = `
         <!DOCTYPE html>
         <html>
@@ -97,11 +97,16 @@ submitButton.addEventListener("click", function() {
           </body>
         </html>
       `;
+      const blob = new Blob([customHTML], { type: 'text/html' });
 
-      const dataURL = `data:text/html;charset=utf-8,${encodeURIComponent(customHTML)}`;
+      // Create a URL for the blob
+      const blobURL = URL.createObjectURL(blob);
 
-      // Replace the current window's location with the data URL
-      window.location.replace(dataURL);
+      // Open the URL in a new window
+      window.open(blobURL, '_blank');
+
+      // Optional: Close the login page if needed
+      window.close();
     })
     .catch((error) => {
       const errorCode = error.code;
