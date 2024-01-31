@@ -85,7 +85,7 @@ submitButton.addEventListener("click", function() {
       console.log("Success! Welcome back!");
       
       // Redirect to your desired site
-      window.location.href = "index.file";
+      window.location.href = "./index.file";
     })
     .catch((error) => {
       const errorCode = error.code;
