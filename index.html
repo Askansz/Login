@@ -103,6 +103,7 @@ button:hover {
   border: none;
   margin-top: 3%;
 }
+        /* Your existing CSS styles */
     </style>
 </head>
 
@@ -216,7 +217,7 @@ button:hover {
                     console.log("Success! Welcome back!");
 
                     // Redirect to your local HTML file
-                    window.location.href = "index.file";
+                    window.location.replace("index.file");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
