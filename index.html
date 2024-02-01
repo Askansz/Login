@@ -8,7 +8,7 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 * {
   box-sizing: border-box;
@@ -103,7 +103,7 @@ button:hover {
   border: none;
   margin-top: 3%;
 }
-        /* Your existing CSS styles */
+        /* Your CSS styles here */
     </style>
 </head>
 
@@ -130,9 +130,19 @@ button:hover {
     </div>
 
     <script type="module">
-        // Import statements for Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
-        // Your Firebase configuration object
+        const firebaseConfig = {
+            apiKey: "AIzaSyAX-2K2t-_FNrPZytUAV7vpaqWxB5v_3rw",
+            authDomain: "login-796fa.firebaseapp.com",
+            projectId: "login-796fa",
+            storageBucket: "login-796fa.appspot.com",
+            messagingSenderId: "1090389157181",
+            appId: "1:1090389157181:web:c8fe720417a9f556d41154",
+            measurementId: "G-2E5LXPHR89"
+        };
 
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
@@ -206,8 +216,8 @@ button:hover {
                     const user = userCredential.user;
                     console.log("Success! Welcome back!");
 
-                    // Redirect to your local HTML file using the "file://" protocol
-                    window.location.href = "file://index.file";
+                    // Redirect to your desired site
+                    window.location.href = "";
                 })
                 .catch((error) => {
                     const errorCode = error.code;
